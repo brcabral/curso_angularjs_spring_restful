@@ -1,0 +1,56 @@
+<html ng-app="loja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+</head>
+<h2>Lista de livros</h2>
+
+<a href="#livro/cadastro">Novo
+	<img alt="Novo" src="resources/img/add-icon.png" border="0">
+</a>
+
+<br/> <br/>
+
+<label>Filtro
+	<input type="text" ng-model="filtro" class="form-control">
+</label>
+
+<br/> <br/>
+
+<div ng-controller="livroController" ng-init="listarLivros(1)">
+	<div class="content table-responsive table-full-width">
+		<table class="table table-hover">
+			<thead>
+				<th>ID</th>
+				<th>Capa</th>
+				<th>ISBN</th>
+				<th>Título</th>
+				<th>Autor</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="livro in data | filter:filtro">
+					<td>{{livro.id}}</td>
+					<td><img src="{{livro.foto}}" style="width: 40px; height: 40px;" /></td>
+					<td>{{livro.isbn}}</td>
+					<td>{{livro.titulo}}</td>
+					<td>{{livro.autor}}</td>
+					<td> 
+						<a href ng-click="editarLivro(livro.id)">
+							<img alt="Editar" src="resources/img/edit-icon.png" border="0">
+						</a>
+					</td>
+					<td>
+						<a href ng-click="removerLivro(livro.id)">
+							<img alt="Remover" src="resources/img/delete-icon.png" border="0">
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="text-center">
+			<button type="button" class="btn btn-primary btn-round" ng-click="anterior()">Anterior</button>
+			<button type="button" class="btn btn-primary btn-round" ng-click="proximo()">Próximo</button>
+		</div>
+	</div>
+</div>
+
+</html>

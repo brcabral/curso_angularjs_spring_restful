@@ -1,0 +1,66 @@
+<html ng-app="loja">
+<h2>Itens do carrinho</h2>
+
+<label>Pesquisar cliente
+	<input type="text" ng-model="filtroCliente" class="form-control">	
+</label>
+<button type="button" class="btn btn-primary btn-round" ng-click="buscarClientePorNome()">Buscar</button>
+<table class="table table-hover">
+	<tr ng-repeat="cliente in clientes">
+		<td>{{cliente.id}}</td>
+		<td>{{cliente.nome}}</td>
+		<td>
+			<a href ng-click="adicionarCliente(cliente)">
+				<img alt="Adicionar clientes" title="Adicionar cliente"
+					src="resources/img/add-icon.png" border="0">
+			</a>
+		</td>
+</table>
+
+<br/> <br/>
+
+<label>Cliente:</label>
+<input type="text" id="idCliente" class="form-control" readonly="readonly" ng-model="pedidoObjeto.cliente.id" value="{{pedidoObjeto.cliente.id}}" style="max-width: 100px " />
+<br/>
+<input type="text" id="nomeCliente" class="form-control" readonly="readonly" ng-model="pedidoObjeto.cliente.nome" value="{{pedidoObjeto.cliente.nome}}" />
+<br/> <br/>
+
+<label>Filtrar livros
+	<input type="text" ng-model="filtro" class="form-control">
+</label>
+
+<br/> <br/>
+
+<div ng-controller="lojaController">
+	<div class="content table-responsive table-full-width">
+		<table class="table table-hover">
+			<thead>
+				<th>ID</th>
+				<th>Capa</th>
+				<th>Título</th>
+				<th>Quantidade</th>
+				<th>Preço</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in itensCarrinho | filter:filtro">
+					<td>{{item.livro.id}}</td>
+					<td><img src="{{item.livro.foto}}" style="width: 40px; height: 40px;" /></td>
+					<td>{{item.livro.titulo}}</td>
+					<td> <input type="number" value="{{item.quantidade}}" ng-model="item.quantidade" ng-change="recalculo(item.quantidade, item.livro.id)" /></td>
+					<td>{{item.livro.preco}}</td>
+					<td>
+						<a href ng-click="removerLivroCarrinho(item.livro.id)">
+							<img alt="Remover" src="resources/img/delete-icon.png" border="0">
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<h2>TOTAL: {{pedidoObjeto.valorTotal}}</h2>
+		<a href="" ng-click="finalizarPedido()">
+			<img alt="Finalizar" src="resources/img/finalizar-pedido.png" title="Finalizar pedido" border="0">
+		</a>
+	</div>
+</div>
+
+</html>

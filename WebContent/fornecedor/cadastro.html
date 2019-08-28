@@ -1,0 +1,130 @@
+<html>
+<h2>Cadastro de fornecedores</h2>
+<a href="#fornecedorlist">Lista de fornecedor
+	<img alt="Lista" src="resources/img/list-icon.png" border="0">
+</a>
+
+ <div class="col-md-8">
+     <div class="card card-user">
+       <div class="card-body">
+         <form id="formFornecedor" ng-submit="salvarFornecedor()">
+           <div class="row">          
+             <div class="col-md-5">
+               <div class="form-group">
+                 <label>ID</label>
+                 <input type="text" ng-model="fornecedor.id" class="form-control" disabled>
+               </div>
+             </div>
+           </div>
+
+           <div class="row">          
+             <div class="col-md-5">
+               <div class="form-group">
+                 <label>CNPJ</label>
+                 <input type="text" id="cnpj" ng-model="fornecedor.cnpj" class="form-control" placeholder="CNPJ" required="required">
+               </div>
+             </div>
+
+             <div class="col-md-5">
+               <div class="form-group">
+                 <label>Inscrição estadual</label>
+                 <input type="text" id="inscricaoEstadual" ng-model="fornecedor.inscricaoEstadual" class="form-control" placeholder="Inscrição estadual" required="required">
+               </div>
+             </div>
+           </div>
+
+           <div class="row">
+             <div class="col-md-10">
+               <div class="form-group">
+                 <label>Razão social</label>
+                 <input type="text" ng-model="fornecedor.razaoSocial" class="form-control" placeholder="Razão social" required="required">
+               </div>
+             </div>
+           </div>
+
+           <div class="row">
+             <div class="col-md-10">
+               <div class="form-group">
+                 <label>Nome fantasia</label>
+                 <input type="text" ng-model="fornecedor.nomeFantasia" class="form-control" placeholder="Nome fantasia" required="required">
+               </div>
+             </div>
+           </div>
+
+           <div class="row">
+             <div class="col-md-10">
+               <div class="form-group">
+                 <label>Endereço</label>
+                 <input type="text" ng-model="fornecedor.endereco" class="form-control" placeholder="Endereço" required="required">
+               </div>
+             </div>
+           </div>
+
+           <div class="row">
+             <div class="col-md-5">
+               <div class="form-group">
+                 <label>Telefone</label>
+                 <input id="telefone" type="text" class="form-control" ng-model="fornecedor.telefone"
+                 	placeholder="Telefone" required="required">
+               </div>
+             </div>
+             
+             <div class="col-md-3">
+               <div>
+                 <input type="checkbox"  ng-model="fornecedor.ativo" id="ativo">
+                 <label for="ativo">Ativo</label>                 
+               </div>
+             </div>
+           </div>
+
+           <div class="row">
+             <div class="col-md-5">
+               <div class="form-group">
+                 <label>Estado</label>
+                 <select id="selectEstados" ng-model="fornecedor.estados.id" class="form-control" ng-init="carregarEstados()"
+                 	onchange="javascript:carregarCidadesChrome(this)">
+                 	<option value="">Selecione</option>
+                 	<option ng-repeat="estado in estados" ng-click="carregarCidades(estado)"
+                 		value="{{estado.id}}">{{estado.nome}}</option>
+                 </select>
+               </div>
+             </div>
+
+             <div class="col-md-5">
+               <div class="form-group">
+                 <label>Cidade</label>
+                 <select id="selectCidades" ng-model="fornecedor.cidades.id" class="form-control">
+                 <option value="">Selecione</option>
+                 <option ng-repeat="cidade in cidades" value="{{cidade.id}}">{{cidade.nome}}</option>
+                 </select>
+               </div>
+             </div>
+           </div>
+           
+           <div class="row">
+             <div class="col-md-5">
+               <div class="form-group">
+                 <img alt="Foto" id="imagemFornecedor" src="" style="width: 118px; height: 140px;" border="0">
+                 <input type="file" id="file" onchange="javascript:visualizarImg()">
+               </div>
+             </div>
+           </div>
+
+           <div class="row">
+             <div class="update ml-auto mr-auto">
+               <button type="submit" class="btn btn-primary btn-round">Salvar</button>
+               <button type="submit" class="btn btn-primary btn-round" ng-click="$scope.fornecedor={}">Limpar</button>
+             </div>
+           </div>
+         </form>
+       </div>
+     </div>
+   </div>
+ </div>
+
+<script type="text/javascript">
+	$('#telefone').mask('(99) 9999-9999');
+	$('#cnpj').mask('99.999.999/9999-99');	
+</script>
+
+</html>

@@ -1,0 +1,45 @@
+<html>
+<h2>Loja on-line de livros</h2>
+
+<a href="" ng-click="fecharPedido()">Há {{carrinhoLivro.length}} item(ns) no carrinho</a>
+<i class="nc-icon nc-cart-simple"></i>
+<br>
+
+ <div class="col-md-8" ng-init="listarLivros(1)">
+     <div class="card card-user">
+       <div class="card-body">
+         <form id="formLoja">
+           <div class="row">
+             <div class="col-md-3" ng-repeat="livro in data">
+             	<div class="form-group">
+             		<label style="color: black;">{{livro.titulo}}</label>
+             		<img id="imagemLoja" alt="Foto de capa" src="{{livro.foto}}" style="170px; height: 200px" border="0">
+             		<label onclick="mostrarDescricao(this.title)" title="{{livro.descricao}}">Ver descrição</label>
+             		<br>
+             		<label style="font-size: 16; font-weight: bold;">{{livro.preco}}</label>
+             		<br>
+             		<button type="button" class="btn btn-primary btn-round" ng-click="addLivro(livro.id)">Adicionar</button>
+             	</div>
+             </div>
+           </div>
+
+
+         </form>
+         <div class="text-center">
+           <button type="button" class="btn btn-primary btn-round" ng-click="anterior()">Anterior</button>
+           <button type="button" class="btn btn-primary btn-round" ng-click="proximo()">Próximo</button>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+ <div id="descricaoLivro" title="Descrição resumida do livro"></div>
+ <script type="text/javascript">
+ 	function mostrarDescricao(descricao) {
+		$('#descricaoLivro').html("<p>" + descricao + "</p").dialog({
+				modal : true
+			});
+		}
+	</script>
+
+</html>

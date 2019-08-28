@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory name="sessionFactory">
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="hibernate.connection.datasource">java:/comp/env/jdbc/datasouce</property>
+		<property name="hibernate.default_schema">public</property>
+		<!-- Contexto de sessão a ser usado -->
+		<property name="hibernate.current_session_context_class">thread</property>
+		<!-- Delegada as transações (JDBC) a bases de dados (Padrão) -->
+		<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+		<!-- Selecione um org.hibernate.jdbc.Batcher personalizado -->
+		<property name="hibernate.jdbc.factory_class">org.hibernate.jdbc.NonBatchingBatcherFactory</property>
+		<!-- Lote de SQL -->
+		<property name="hibernate.jdbc.batch_size">100</property>
+		<!-- Cache -->
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+		<!-- Fecha sessão automaticamente -->
+		<property name="hibernate.transaction.auto_close_session">true</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.show_sql">false</property>
+		<property name="hibernate.format_sql">true</property>
+		<!-- Estatisticas de processos SQL -->
+		<property name="hibernate.generate_statistics">false</property>
+		<property name="hibernate.use_sql_comments">false</property>
+		<!-- Commit Automatico -->
+		<property name="hibernate.connection.autocommit">false</property>
+		<!-- Poll de conexão -->
+		<property name="hibernate.connection.pool_size">50</property>
+
+		<mapping class="curso.angular.model.Estados" />
+		<mapping class="curso.angular.model.Cidades" />
+		<mapping class="curso.angular.model.Cliente" />		
+		<mapping class="curso.angular.model.Fornecedor" />
+		<mapping class="curso.angular.model.Livro" />
+		<mapping class="curso.angular.model.Pedido" />
+		<mapping class="curso.angular.model.ItemPedido" />
+
+	</session-factory>
+</hibernate-configuration>
